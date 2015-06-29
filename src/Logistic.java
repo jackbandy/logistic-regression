@@ -54,6 +54,22 @@ public class Logistic {
         }
         return sigmoid(logit);
     }
+	
+	private double ClassifyOnevAll(int[] x){
+		double[] classes = new double[];
+		for(/*each classification*/){
+			classes[i] = classify(weights[i]);
+			i++;
+		}
+		
+		int maxInd;
+		double max = 0;
+		for (maxInd = 0; maxInd < classes.length; maxInd++){
+			if (classes[maxInd] > max)	max = classes[maxInd];
+		}
+		
+		
+	}
 
 
     public static void main(String... args) throws FileNotFoundException {
