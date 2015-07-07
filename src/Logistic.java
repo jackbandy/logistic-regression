@@ -26,9 +26,11 @@ public class Logistic {
         weights = new double[n];
     }
 
+
     private double sigmoid(double z) {
         return 1 / (1 + Math.exp(-z));
     }
+
 
     public void train(List<Instance> instances) {
         for (int n=0; n<ITERATIONS; n++) {
@@ -47,6 +49,7 @@ public class Logistic {
         }
     }
 
+
     private double classify(int[] x) {
         double logit = .0;
         for (int i=0; i<weights.length;i++)  {
@@ -54,20 +57,23 @@ public class Logistic {
         }
         return sigmoid(logit);
     }
-	
+
+
 	private double ClassifyOnevAll(int[] x){
-		double[] classes = new double[];
-		for(/*each classification*/){
-			classes[i] = classify(weights[i]);
-			i++;
-		}
-		
-		int maxInd;
-		double max = 0;
-		for (maxInd = 0; maxInd < classes.length; maxInd++){
-			if (classes[maxInd] > max)	max = classes[maxInd];
-		}
-		
+        double[] costs = new double[12];
+        double logit;
+        //for each potential gesture
+        for(int j = 0; j < 12; j++){
+            costs[j] = classify(x);
+        }
+
+
+        int maxInd = 0;
+        String candidates = "";
+        for(int i = 0; i < costs.length; i++) {
+            if (costs[i] > costs[maxInd]) maxInd = i;
+            if(costs[i] > .9) candidates += indToGesture(i) + ",\n";
+        }
 		
 	}
 
